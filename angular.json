@@ -16,10 +16,19 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "fr-CA": "src/locale/lang.fr-CA.xlf",
+          "si": "src/locale/lang.si.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
+            "aot": true,
             "outputPath": "dist/angularLocalizePOC",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -45,8 +54,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "50kb",
+                  "maximumError": "60kb"
                 }
               ],
               "fileReplacements": [
@@ -64,6 +73,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "fr-CA" : {
+              "localize": ["fr-CA"],
+              "main": "src/main.fr.ts"
+            },
+            "si" : {
+              "localize": ["si"],
+              "main": "src/main.si.ts"
             }
           },
           "defaultConfiguration": "production"
@@ -76,6 +93,12 @@
             },
             "development": {
               "browserTarget": "angularLocalizePOC:build:development"
+            },
+            "fr-CA": {
+              "browserTarget": "angularLocalizePOC:build:fr-CA"
+            },
+            "si": {
+              "browserTarget": "angularLocalizePOC:build:si"
             }
           },
           "defaultConfiguration": "development"
